@@ -4,6 +4,8 @@ import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-materi
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useTheme } from '@mui/material/styles';
+
+import {Sidebar} from '..';
 import useStyles from './styles';
 
 const NavBar = () => {
