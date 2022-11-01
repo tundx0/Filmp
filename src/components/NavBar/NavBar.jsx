@@ -58,7 +58,9 @@ const NavBar = () => {
 
                   </Drawer>
                 ) : (
-                  <Drawer />
+                  <Drawer>
+                    <Sidebar setMobileOpen={setMobileOpen} />
+                  </Drawer>
                 )
               }
         </nav>
