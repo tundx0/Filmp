@@ -16,6 +16,10 @@ const Sidebar = ({setMobileOpen}) => (
       <Link to="/" className={ClassNames.imageLink}>
         <img className={classes.image} src={theme.palette.mode === 'light'? redLogo : blueLogo} alt='Filmpire Logo' />;
       </Link>
+      <Divider />
+      <List>
+        <ListSubheader>Categories</ListSubheader>
+      </List>
     </>
 
 
