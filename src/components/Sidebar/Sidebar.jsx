@@ -8,6 +8,7 @@ import {
   ListItemIcon,
   Box,
   CircularProgress,
+  ListItemButton,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
@@ -52,7 +53,7 @@ const Sidebar = ({ setMobileOpen }) => {
         <ListSubheader>Categories</ListSubheader>
         {demoCategories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItemButton onClick={() => {}}>
               <ListItemIcon>
                 <img
                   src={redLogo}
@@ -60,7 +61,7 @@ const Sidebar = ({ setMobileOpen }) => {
                   height={30}
                 />
               </ListItemIcon>
-            </ListItem>
+            </ListItemButton>
           </Link>
         ))}
       </List>
