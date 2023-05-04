@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useTheme } from '@mui/material/styles';
 
-import {Sidebar} from '..';
+import { Sidebar } from '..';
 import useStyles from './styles';
 
 const NavBar = () => {
@@ -20,20 +20,20 @@ const NavBar = () => {
       <AppBar position="fixed">
         <Toolbar className={classes.toolbar}>
           {isMobile && (
-          <IconButton color="inherit" onClick={() => {}} edge="start">
-            <MenuIcon />
-          </IconButton>
+            <IconButton color="inherit" onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)} edge="start" className={classes.menuButton}>
+              <MenuIcon />
+            </IconButton>
           )}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => { }}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           <div>
             {!isAuthenticated ? (
-              <Button color="inherit" onClick={() => {}}>
+              <Button color="inherit" onClick={() => { }}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
-              <Button color="inherit" component={Link} to="/profile/:id" className={classes.linkButton} onClick={() => {}}>
+              <Button color="inherit" component={Link} to="/profile/:id" className={classes.linkButton} onClick={() => { }}>
                 {!isMobile && <>My Movies &nbsp;</>}
                 <Avatar style={{ width: 30, height: 30 }} alt="Profile" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fvectors%2Favatar-icon-placeholder-facebook-1577909%2F&psig=AOvVaw3h73r_qnOLrljA6JSSrcIY&ust=1667000012982000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLCytY7JgfsCFQAAAAAdAAAAABAE" />
               </Button>
@@ -45,24 +45,25 @@ const NavBar = () => {
       <div>
         <nav className={classes.drawer}>
           {
-                isMobile ? (
-                  <Drawer
-                    variant="temporary"
-                    anchor="right"
-                    open={mobileOpen}
-                    className={classes.drawerBackground}
-                    classes={{ paper: classes.drawPaper }}
-                    ModalProps={{ keepMounted: true }}
-                  >
-                    <Sidebar setMobileOpen={setMobileOpen} />
+            isMobile ? (
+              <Drawer
+                variant="temporary"
+                anchor="right"
+                open={mobileOpen}
+                onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+                className={classes.drawerBackground}
+                classes={{ paper: classes.drawPaper }}
+                ModalProps={{ keepMounted: true }}
+              >
+                <Sidebar setMobileOpen={setMobileOpen} />
 
-                  </Drawer>
-                ) : (
-                  <Drawer>
-                    <Sidebar setMobileOpen={setMobileOpen} />
-                  </Drawer>
-                )
-              }
+              </Drawer>
+            ) : (
+              <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
+                <Sidebar setMobileOpen={setMobileOpen} />
+              </Drawer>
+            )
+          }
         </nav>
       </div>
     </>
