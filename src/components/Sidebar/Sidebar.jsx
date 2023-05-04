@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress, ListItemButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
+// eslint-disable-next-line import/no-named-as-default
 import useStyles from './styles';
 
 const categories = [
@@ -22,6 +23,7 @@ const blueLogo = 'https://images-workbench.99static.com/e5W3ntM5xkLxrx9YDdgV6VuF
 
 const Sidebar = ({ setMobileOpen }) => {
   const classes = useStyles();
+
   const theme = useTheme();
 
   return (
