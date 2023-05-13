@@ -3,6 +3,8 @@ import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 // eslint-disable-next-line import/no-named-as-default
+import { useGetGenresQuery } from '../../services/TMDB';
+
 import useStyles from './styles';
 
 const categories = [
@@ -25,6 +27,8 @@ const Sidebar = ({ setMobileOpen }) => {
   const classes = useStyles();
 
   const theme = useTheme();
+
+  const { data, isFetching } = useGetGenresQuery();
 
   return (
     <>
@@ -50,18 +54,20 @@ const Sidebar = ({ setMobileOpen }) => {
       <Divider />
       <List>
         <ListSubheader>Genres</ListSubheader>
-        {
-          demoCategories.map(({ label, value }) => (
-            <Link key={value} className={classes.links} to="/">
-              <ListItem onClick={() => {}} button>
-                <ListItemIcon>
-                  <img src={redLogo} className={classes.genreImages} height={30} />
-                </ListItemIcon>
-                <ListItemText primary={label} />
-              </ListItem>
-            </Link>
-          ))
-        }
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress size="4rem" />
+          </Box>
+        ) : data.genres.map(({ name, id }) => (
+          <Link key={name} className={classes.links} to="/">
+            <ListItem onClick={() => {}} button>
+              {/* <ListItemIcon>
+                <img src={redLogo} className={classes.genreImages} height={30} />
+              </ListItemIcon> */}
+              <ListItemText primary={name} />
+            </ListItem>
+          </Link>
+        ))}
       </List>
     </>
   );
