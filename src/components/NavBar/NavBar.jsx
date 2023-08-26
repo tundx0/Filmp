@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useTheme } from '@mui/material/styles';
 
-import { Sidebar } from '..';
+import { Search, Sidebar } from '..';
 import useStyles from './styles';
 
 const NavBar = () => {
@@ -39,7 +39,7 @@ const NavBar = () => {
               </Button>
             )}
           </div>
-          {!isMobile && 'Search'}
+          {!isMobile && <Search /> }
         </Toolbar>
       </AppBar>
       <div>
