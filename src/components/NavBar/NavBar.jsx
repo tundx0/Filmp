@@ -1,4 +1,4 @@
-import React, { isAuthenticated, useState } from 'react';
+import React, { useState } from 'react';
 import { AppBar, useMediaQuery, IconButton, Toolbar, Drawer, Button, Avatar, Box } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
@@ -7,12 +7,14 @@ import { useTheme } from '@mui/material/styles';
 
 import { Search, Sidebar } from '..';
 import useStyles from './styles';
+import { fetchToken } from '../../utils';
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
+  const isAuthenticated = false;
 
   return (
     <>
@@ -29,7 +31,7 @@ const NavBar = () => {
           </IconButton>
           <div>
             {!isAuthenticated ? (
-              <Button color="inherit" onClick={() => { }}>
+              <Button color="inherit" onClick={fetchToken}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
