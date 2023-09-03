@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import axios from 'axios';
 
 const moviesApi = axios.create({
@@ -19,5 +20,22 @@ export const fetchToken = async () => {
     }
   } catch (error) {
     console.log('Token could not be created');
+  }
+};
+
+export const getSessionId = async () => {
+  const token = localStorage.getItem('request_token');
+
+  if (token) {
+    try {
+      const { data: { session_id } } = await moviesApi.post('authentication/session/new', {
+        request_token: token,
+      });
+      localStorage.setItem('session_id', session_id);
+
+      return session_id;
+    } catch (error) {
+      console.log(error);
+    }
   }
 };

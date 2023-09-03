@@ -16,9 +16,19 @@ const NavBar = () => {
   const theme = useTheme();
   const isAuthenticated = false;
 
+  const token = localStorage.getItem('request_token');
+  const sessionId = localStorage.getItem('session_id');
+
+  useEffect(() => {
+    const loginUser= async()=> {
+      if(token && sessionId){
+        
+      }
+    }
+  }, [token]);
+
   return (
     <>
-      {/* console.log("gdfe") */}
       <AppBar position="fixed">
         <Toolbar className={classes.toolbar}>
           {isMobile && (
